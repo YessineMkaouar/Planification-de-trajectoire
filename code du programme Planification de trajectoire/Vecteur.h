@@ -8,9 +8,9 @@ private:
     double X;                      //1ere composante du vecteur
     double Y;                     //2eme composante du vecteur
 public:
-    Vecteur();                      //constructeur d'un vecteur
-    Vecteur(Point P1, Point P2);    //constructeur d'un vecteur
-    Vecteur(double X,double Y);     //constructeur d'un vecteur
+    Vecteur();                      //constructeur d'un vecteur nul
+    Vecteur(Point P1, Point P2);    //constructeur d'un vecteur à partir de deux points
+    Vecteur(double X,double Y);     //constructeur d'un vecteur à partir de deux coordonnées
     double getX();                  //getter de la 1ere composante du vecteur
     double getY();                  //getter de la 1ere composante du vecteur
     bool estNul();  //Retourne 1 si le vecteur est nul

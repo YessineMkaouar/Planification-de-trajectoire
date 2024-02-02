@@ -22,7 +22,7 @@ Vecteur::Vecteur(Point A, Point B)  // constructeur d'un vecteur à partir de de
     X=P1.getx()-P2.getx();
     Y=P1.gety()-P2.gety();
 }
-Vecteur::Vecteur(double XX, double YY) 
+Vecteur::Vecteur(double XX, double YY) // constructeur d'un vecteur à partir de deux coordonnées
 {
     P1.setx(XX);
     P1.sety(0);
@@ -31,18 +31,19 @@ Vecteur::Vecteur(double XX, double YY)
     X=XX;
     Y=YY;
 }
-double Vecteur::getX(){return X;}
-double Vecteur::getY(){return Y;}
-bool Vecteur::estNul()
+double Vecteur::getX(){return X;} //getter de la 1ere composante du vecteur
+double Vecteur::getY(){return Y;} //getter de la 2eme composante du vecteur
+bool Vecteur::estNul() //Retourne 1 si le vecteur est null
 {
     return (X*X+Y*Y==0);
 }
-double Vecteur::norme(){return (sqrt(X*X+Y*Y));}
-double Vecteur::produitScalaire(Vecteur &V)
+double Vecteur::norme(){return (sqrt(X*X+Y*Y));} //Retourne la norme du vecteur
+
+double Vecteur::produitScalaire(Vecteur &V) //Retourne le produit scalaire d'un vecteur avec un autre vecteur V
 {
     return (X*V.X+Y*V.Y);
 }
-double Vecteur::angle(Vecteur &V)
+double Vecteur::angle(Vecteur &V) //Retourne l'angle que fait le vecteur avec un autre vecteur V
 {
     double ps=X*V.X+Y*V.Y;
     double n1=sqrt(X*X+Y*Y);
@@ -51,7 +52,7 @@ double Vecteur::angle(Vecteur &V)
     return acos(ps/(n1*n2));
 }
 
-bool Vecteur::estAigu(Vecteur & V)
+bool Vecteur::estAigu(Vecteur & V) //Retourne 1 si l'angle est Aigu, 0 sinon
 {
     double ps=X*V.X+Y*V.Y;
     double n1=sqrt(X*X+Y*Y);
@@ -60,7 +61,7 @@ bool Vecteur::estAigu(Vecteur & V)
     return (abs(angle)<=M_PI/2);
 }
 
-bool Vecteur::estPerpendiculaire(Vecteur & V)
+bool Vecteur::estPerpendiculaire(Vecteur & V) //Retourne 1 si le vecteur est perpendiculaire à un autre vecteur V
 {
     return (X*V.X+Y*V.Y==0);
 }
