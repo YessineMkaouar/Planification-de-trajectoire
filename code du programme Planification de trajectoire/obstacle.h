@@ -17,17 +17,17 @@ class Obstacle
 
 {
 private:
-    int nbs; // nombre de sommet de l'obstacle
-    vector<Point> som; // ensemble des sommets de l'obstacle
-    vector<Segment> Tab; // ensemble des aretes de l'obstacle
+    int nbs;             // nombre de sommet de l'obstacle
+    vector<Point> som;   // vecteur contenant les sommets de l'obstacle
+    vector<Segment> Tab; // vecteur contenant l'ensemble des aretes (segments) de l'obstacle
 
-public :
-    Obstacle();                 //constructeur de obstacle
-    Obstacle(vector <Point>);   //constructeur de obstacle
-    int get_nbs() const;        //nombre de sommets
-    vector<Point> get_som() const;      //retourne la liste des sommets de l'obstacle
-    vector<Segment> aretes(); // liste avec les aretes
-    bool intersect(Arc AB); //Verifie si un arc coupe l'obtacle en au moins 2 points
-    vector<Segment> ToutSegmentPossible(); // Génère une lise de tous les segment qu'on peut dessiner dans un obstacle
+public:
+    Obstacle();                            // constructeur de obstacle par defaut
+    Obstacle(vector<Point>);               // constructeur de obstacle Ã  partir d'une liste de points
+    int get_nbs() const;                   // retourne le nombre de sommets de l'obstacle
+    vector<Point> get_som() const;         // retourne la liste des sommets de l'obstacle
+    vector<Segment> aretes();              // liste avec les aretes
+    bool intersect(Arc AB);                // Verifie si un arc coupe l'obtacle en au moins 2 points
+    vector<Segment> ToutSegmentPossible(); // Genere une lise de tous les segment qu'on peut dessiner dans un obstacle
 };
 #endif
