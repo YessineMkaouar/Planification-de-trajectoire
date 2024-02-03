@@ -23,7 +23,6 @@ public:
     friend ostream &operator<<(ostream &, const Point &); // affichage d'un point
     friend bool operator==(Point, Point);                 // comparaison entre deux points
     friend bool operator!=(Point, Point);
-    friend istream &operator>>(istream &, Point &); // affichage d'un point
 };
 
 #endif // POINT_H_INCLUDED

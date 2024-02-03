@@ -56,3 +56,9 @@ bool operator!=(Segment S1, Segment S2) // retourne vrai si les deux segments so
     else
         return true;
 }
+
+ostream &operator<<(ostream &out, const Segment &S) // affichage d'un segment
+{
+    out << "Segment de points " << S.P1 << " et " << S.P2;
+    return out;
+}

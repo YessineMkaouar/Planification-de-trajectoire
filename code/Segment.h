@@ -23,5 +23,6 @@ public:
     bool intersect(Segment);                  // test d'intersection entre deux segments
     friend bool operator==(Segment, Segment); // comparaison entre deux segments
     friend bool operator!=(Segment, Segment);
+    friend ostream &operator<<(ostream &, const Segment &); // affichage d'un segment
 };
 #endif // SEGMENT_H_INCLUDED

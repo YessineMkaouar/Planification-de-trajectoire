@@ -11,7 +11,7 @@ using namespace std;
 class Arc : public Segment
 {
 private:
-    double COUT;        //cout d'un arc (évidemment sa norme 2)
+    double COUT;        //cout d'un arc (ï¿½videmment sa norme 2)
 public:
     Arc();
     Arc(Point P1,Point P2);
