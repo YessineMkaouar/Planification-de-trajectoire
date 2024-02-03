@@ -48,7 +48,7 @@ vector<Segment> Obstacle::aretes() // retourne la liste des segments ( aretes ) 
 struct PPoint
 {
   double x, y;
-  PPoint(double _x, double _y) : x(_x), y(_y) {}  
+  PPoint(double _x, double _y) : x(_x), y(_y) {}
 };
 struct VVecteur
 {
@@ -56,7 +56,7 @@ struct VVecteur
   PPoint a, b;
   VVecteur(PPoint _a, PPoint _b) : a(_a), b(_b)
   {
-    x = b.x - a.x; 
+    x = b.x - a.x;
     y = b.y - a.y;
   }
   double vecto(VVecteur autre) // produit vectoriel
@@ -69,7 +69,7 @@ struct VVecteur
   }
 };
 Point point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
-{ 
+{
 
   PPoint a1(x1, y1);
   PPoint a2(x2, y2);
@@ -79,10 +79,10 @@ Point point_intersec(double x1, double y1, double x2, double y2, double x3, doub
   PPoint b2(x4, y4);
   VVecteur B(b1, b2); // vecteur B
 
-  double a = (double)A.vecto(VVecteur(a1, b1)) / A.norme(); 
+  double a = (double)A.vecto(VVecteur(a1, b1)) / A.norme();
   double b = (double)A.vecto(VVecteur(a1, b2)) / A.norme();
 
-  double nouveauB = B.norme() + (B.norme() * b) / (a - b); 
+  double nouveauB = B.norme() + (B.norme() * b) / (a - b);
   double resX, resY;
   double vraiRapport = nouveauB / B.norme();
 
@@ -103,9 +103,9 @@ double determinant(Vecteur V1, Vecteur V2)
 
 bool Obstacle::intersect(Arc AB) // Verifie si un arc coupe l'obtacle en au moins 2 points
 {
-  int nbre = 0; // nombre de fois ou le segment intersecte la droite
-  vector<Point> aux = som;
-  aux.push_back(som[0]);
+  int nbre = 0;            // nombre de fois ou le segment intersecte la droite
+  vector<Point> aux = som; // aux est un vecteur qui contient les sommets de l'obstacle
+  aux.push_back(som[0]);   // ajout du premier point à la fin du vecteur
   for (int i = 0; i < nbs; i++)
   {
     Vecteur V1(aux[i], aux[i + 1]);
