@@ -16,41 +16,39 @@ Obstacle::Obstacle(vector<Point> T) // constructeur à partir d'une liste de poi
 {
   som = T;
   nbs = T.size();
-  for (int i = 0; i < nbs; i++)
+  for (int i = 0; i < nbs; i++) // Création d'un tableau Tab avec les bords de l'Obstacle
   {
     if (i < nbs - 1)
     {
-
-      Tab.push_back(Segment(T[i], T[i + 1]));
+      Tab.push_back(Segment(T[i], T[i + 1])); // ajout des segments ( les bords ) dans le vecteur Tab
     }
     if (i == nbs - 1)
     {
-      Tab.push_back(Segment(T[i], T[0]));
+      Tab.push_back(Segment(T[i], T[0])); // ajout du dernier segment reliant le dernier point au premier
     }
   };
 };
-
-// création d'un tableau avec les bords de l'Obstacle
 
 int Obstacle::get_nbs() const { return nbs; }
 
 // void Obstacle::add_som(Point P){som.push_back(P);nbs+=1;}
 
-vector<Point> Obstacle::get_som() const { return som; }
+vector<Point> Obstacle::get_som() const { return som; } // retourne la liste des sommets de l'obstacle
 
-vector<Segment> Obstacle::aretes()
+vector<Segment> Obstacle::aretes() // retourne la liste des segments ( aretes ) de l'obstacle
 {
   return Tab;
 }
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-//// La FONTION SUIVANTE CALCULE L'intersecgtion entre deux segment///////////
-//////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//// La partie du code suivant détermine le point d'intersection entre deux segments ////////
+////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
 struct PPoint
 {
   double x, y;
-  PPoint(double _x, double _y) : x(_x), y(_y) {}
+  PPoint(double _x, double _y) : x(_x), y(_y) {}  
 };
 struct VVecteur
 {
@@ -58,33 +56,33 @@ struct VVecteur
   PPoint a, b;
   VVecteur(PPoint _a, PPoint _b) : a(_a), b(_b)
   {
-    x = b.x - a.x;
+    x = b.x - a.x; 
     y = b.y - a.y;
   }
-  double vecto(VVecteur autre)
+  double vecto(VVecteur autre) // produit vectoriel
   {
     return (x * autre.y - y * autre.x);
   }
-  double norme()
+  double norme() // norme du vecteur
   {
     return sqrt(x * x + y * y);
   }
 };
 Point point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
-{
+{ 
 
   PPoint a1(x1, y1);
   PPoint a2(x2, y2);
-  VVecteur A(a1, a2);
+  VVecteur A(a1, a2); // vecteur A
 
   PPoint b1(x3, y3);
   PPoint b2(x4, y4);
-  VVecteur B(b1, b2);
+  VVecteur B(b1, b2); // vecteur B
 
-  double a = (double)A.vecto(VVecteur(a1, b1)) / A.norme();
+  double a = (double)A.vecto(VVecteur(a1, b1)) / A.norme(); 
   double b = (double)A.vecto(VVecteur(a1, b2)) / A.norme();
 
-  double nouveauB = B.norme() + (B.norme() * b) / (a - b);
+  double nouveauB = B.norme() + (B.norme() * b) / (a - b); 
   double resX, resY;
   double vraiRapport = nouveauB / B.norme();
 
@@ -94,14 +92,16 @@ Point point_intersec(double x1, double y1, double x2, double y2, double x3, doub
   return P11;
 }
 
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
 double determinant(Vecteur V1, Vecteur V2)
 {
   return V1.getX() * V2.getY() - V1.getY() * V2.getX();
 }
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-bool Obstacle::intersect(Arc AB)
+
+bool Obstacle::intersect(Arc AB) // Verifie si un arc coupe l'obtacle en au moins 2 points
 {
   int nbre = 0; // nombre de fois ou le segment intersecte la droite
   vector<Point> aux = som;

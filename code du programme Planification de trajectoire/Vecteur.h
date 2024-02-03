@@ -19,6 +19,7 @@ public:
     double angle(Vecteur &V);            // Retourne l'angle que fait le vecteur avec un autre V
     bool estAigu(Vecteur &V);            // Retourne 1 si l'angle est Aigu, 0 sinon
     bool estPerpendiculaire(Vecteur &V); // Retourne 1 si le vecteur est perpendiculaire à un autre V
+    double pd_vect(Vecteur &V);          // Retourne le produit vectoriel du vecteur avec un autre V
 };
 
 #endif // VECTEUR_H_INCLUDED

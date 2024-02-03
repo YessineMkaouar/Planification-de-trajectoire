@@ -65,3 +65,8 @@ bool Vecteur::estPerpendiculaire(Vecteur &V) // Retourne 1 si le vecteur est per
 {
     return (X * V.X + Y * V.Y == 0);
 }
+
+double Vecteur::pd_vect(Vecteur &V) // Retourne le produit vectoriel d'un vecteur avec un autre vecteur V
+{
+    return (X * V.Y - Y * V.X);
+}
