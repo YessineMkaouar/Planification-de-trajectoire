@@ -106,11 +106,11 @@ bool Obstacle::intersect(Arc AB) // Verifie si un arc coupe l'obtacle en au moin
   int nbre = 0;            // nombre de fois ou le segment intersecte la droite
   vector<Point> aux = som; // aux est un vecteur qui contient les sommets de l'obstacle
   aux.push_back(som[0]);   // ajout du premier point à la fin du vecteur
-  for (int i = 0; i < nbs; i++)
+  for (int i = 0; i < nbs; i++)  // on parcourt les sommets de l'obstacle
   {
-    Vecteur V1(aux[i], aux[i + 1]);
-    Vecteur V2(AB.getP1(), AB.getP2());
-    if (determinant(V1, V2) != 0)
+    Vecteur V1(aux[i], aux[i + 1]); // vecteur V1 qui contient les coordonnées des points i et i+1
+    Vecteur V2(AB.getP1(), AB.getP2()); // vecteur V2 qui contient les coordonnées des points P1 et P2 de l'arc
+    if (determinant(V1, V2) != 0) 
     {
       Point Pt = point_intersec(aux[i].getx(), aux[i].gety(), aux[i + 1].getx(), aux[i + 1].gety(), AB.getP1().getx(), AB.getP1().gety(), AB.getP2().getx(), AB.getP2().gety());
       Vecteur VP1(Pt, aux[i]);
@@ -138,7 +138,7 @@ bool Obstacle::intersect(Arc AB) // Verifie si un arc coupe l'obtacle en au moin
  }
 */
 
-vector<Segment> Obstacle::ToutSegmentPossible()
+vector<Segment> Obstacle::ToutSegmentPossible() // Genere une lise de tous les segment qu'on peut dessiner dans un obstacle
 {
   vector<Segment> V;
   for (int i = 0; i < nbs - 1; i++)
@@ -149,5 +149,5 @@ vector<Segment> Obstacle::ToutSegmentPossible()
       V.push_back(S);
     }
   }
-  return V;
+  return V; // retourne la liste des segments possibles dans l'obstacle
 }
