@@ -32,23 +32,43 @@ int main() {
     std::cout << "Longueur de s1: " << s1.getLongueur() << std::endl;
     std::cout << "Intersection entre s1 et s2: " << s1.intersect(s2) << std::endl;
 
-  /*  // Test de la classe Vecteur
+    // Test de la classe Vecteur
+    std::cout << "***** ************************* *****" << std::endl;
+    std::cout << "***** Test de la classe Vecteur *****" << std::endl;
     Vecteur v1(p1, p2);
     std::cout << "Vecteur v1: (" << v1.getX() << ", " << v1.getY() << ")" << std::endl;
     std::cout << "Norme de v1: " << v1.norme() << std::endl;
+    Vecteur v2(1.0, 1.0);
+    std::cout << "Produit scalaire entre v1 et v2: " << v1.produitScalaire(v2) << std::endl;
+    std::cout << "Angle entre v1 et v2: " << v1.angle(v2) << std::endl;
+    std::cout << "v1 est aigu avec v2: " << v1.estAigu(v2) << std::endl;
+    std::cout << "v1 est perpendiculaire a v2: " << v1.estPerpendiculaire(v2) << std::endl;
 
     // Test de la classe Obstacle
+    std::cout << "***** ************************** *****" << std::endl;
+    std::cout << "***** Test de la classe Obstacle *****" << std::endl;
     std::vector<Point> points_obstacle = {Point(0.0, 0.0), Point(2.0, 0.0), Point(2.0, 2.0), Point(0.0, 2.0)};
     Obstacle obstacle(points_obstacle);
     std::cout << "Nombre de sommets de l'obstacle: " << obstacle.get_nbs() << std::endl;
     std::vector<Segment> aretes_obstacle = obstacle.aretes();
-    std::cout << "Nombre d'arêtes de l'obstacle: " << aretes_obstacle.size() << std::endl;
+    std::cout << "Nombre d'aretes de l'obstacle: " << aretes_obstacle.size() << std::endl;
+    for (int i = 0; i < aretes_obstacle.size(); i++) {
+        std::cout << "Aretes " << i << ": " << aretes_obstacle[i] << std::endl;
+    }
 
     // Test de l'intersection
-    Segment test_segment(Point(-1.0, -1.0), Point(3.0, 3.0));
-    std::cout << "Intersection avec le segment de test: " << obstacle.intersect(test_segment) << std::endl;
+    std::cout << "***** ************************** *****" << std::endl;
+    std::cout << "***** Test de l'intersection *****" << std::endl;
+    double x1 = 1.0, y1 = 1.0;
+    double x2 = 3.0, y2 = 4.0;
+    double x3 = 0.0, y3 = 0.0;
+    double x4 = 4.0, y4 = 3.0;
 
-    // Autres tests...
+    /* Point intersection = point_intersec(x1, y1, x2, y2, x3, y3, x4, y4);
+    std::cout << "Point d'intersection : (" << intersection.getx() << ", " << intersection.gety() << ")" << std::endl;
      */
+
+
+
     return 0;
 }
