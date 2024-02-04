@@ -45,29 +45,30 @@ vector<Segment> Obstacle::aretes() // retourne la liste des segments ( aretes ) 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-Point point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
-    Point a1(x1, y1);
-    Point a2(x2, y2);
-    Vecteur A(a1, a2); // vecteur A
+Point point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+{
+  Point a1(x1, y1);
+  Point a2(x2, y2);
+  Vecteur A(a1, a2); // vecteur A
 
-    Point b1(x3, y3);
-    Point b2(x4, y4);
-    Vecteur B(b1, b2); // vecteur B
+  Point b1(x3, y3);
+  Point b2(x4, y4);
+  Vecteur B(b1, b2); // vecteur B
 
-    Vecteur temp_vecteur1(a1, b1);
-    Vecteur temp_vecteur2(a1, b2);
+  Vecteur temp_vecteur1(a1, b1);
+  Vecteur temp_vecteur2(a1, b2);
 
-    double a = static_cast<double>(A.pd_vect(temp_vecteur1)) / A.norme(); 
-    double b = static_cast<double>(A.pd_vect(temp_vecteur2)) / A.norme();
+  double a = static_cast<double>(A.pd_vect(temp_vecteur1)) / A.norme();
+  double b = static_cast<double>(A.pd_vect(temp_vecteur2)) / A.norme();
 
-    double nouveauB = B.norme() + (B.norme() * b) / (a - b);
-    double resX, resY;
-    double vraiRapport = nouveauB / B.norme();
+  double nouveauB = B.norme() + (B.norme() * b) / (a - b);
+  double resX, resY;
+  double vraiRapport = nouveauB / B.norme();
 
-    resX = b1.getx() + B.getX() * vraiRapport;
-    resY = b1.gety() + B.getY() * vraiRapport;
-    Point P11(resX, resY);
-    return P11;
+  resX = b1.getx() + B.getX() * vraiRapport;
+  resY = b1.gety() + B.getY() * vraiRapport;
+  Point P11(resX, resY);
+  return P11;
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -81,14 +82,14 @@ double determinant(Vecteur V1, Vecteur V2)
 
 bool Obstacle::intersect(Arc AB) // Verifie si un arc coupe l'obtacle en au moins 2 points
 {
-  int nbre = 0;            // nombre de fois ou le segment intersecte la droite
-  vector<Point> aux = som; // aux est un vecteur qui contient les sommets de l'obstacle
-  aux.push_back(som[0]);   // ajout du premier point à la fin du vecteur
-  for (int i = 0; i < nbs; i++)  // on parcourt les sommets de l'obstacle
+  int nbre = 0;                 // nombre de fois ou le segment intersecte la droite
+  vector<Point> aux = som;      // aux est un vecteur qui contient les sommets de l'obstacle
+  aux.push_back(som[0]);        // ajout du premier point à la fin du vecteur
+  for (int i = 0; i < nbs; i++) // on parcourt les sommets de l'obstacle
   {
-    Vecteur V1(aux[i], aux[i + 1]); // vecteur V1 qui contient les coordonnées des points i et i+1
+    Vecteur V1(aux[i], aux[i + 1]);     // vecteur V1 qui contient les coordonnées des points i et i+1
     Vecteur V2(AB.getP1(), AB.getP2()); // vecteur V2 qui contient les coordonnées des points P1 et P2 de l'arc
-    if (determinant(V1, V2) != 0) 
+    if (determinant(V1, V2) != 0)
     {
       Point Pt = point_intersec(aux[i].getx(), aux[i].gety(), aux[i + 1].getx(), aux[i + 1].gety(), AB.getP1().getx(), AB.getP1().gety(), AB.getP2().getx(), AB.getP2().gety());
       Vecteur VP1(Pt, aux[i]);

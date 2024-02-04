@@ -5,7 +5,8 @@
 #include "Obstacle.h"
 #include "Arc.h"
 
-int main() {
+int main()
+{
     // Test de la classe Point
     std::cout << "***** Test de la classe Point *****" << std::endl;
     Point p1(1.0, 1.0);
@@ -52,7 +53,8 @@ int main() {
     std::cout << "Nombre de sommets de l'obstacle: " << obstacle.get_nbs() << std::endl;
     std::vector<Segment> aretes_obstacle = obstacle.aretes();
     std::cout << "Nombre d'aretes de l'obstacle: " << aretes_obstacle.size() << std::endl;
-    for (int i = 0; i < aretes_obstacle.size(); i++) {
+    for (int i = 0; i < aretes_obstacle.size(); i++)
+    {
         std::cout << "Aretes " << i << ": " << aretes_obstacle[i] << std::endl;
     }
 
@@ -73,7 +75,8 @@ int main() {
     std::cout << "***** Test de ToutSegmentPossible *****" << std::endl;
     std::vector<Segment> segments_possibles = obstacle.ToutSegmentPossible();
     std::cout << "Nombre de segments possibles: " << segments_possibles.size() << std::endl;
-    for (int i = 0; i < segments_possibles.size(); i++) {
+    for (int i = 0; i < segments_possibles.size(); i++)
+    {
         std::cout << "Segment " << i << ": " << segments_possibles[i] << std::endl;
     }
 
