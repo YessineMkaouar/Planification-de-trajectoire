@@ -68,7 +68,14 @@ int main() {
     std::cout << "Point d'intersection : (" << intersection.getx() << ", " << intersection.gety() << ")" << std::endl;
      */
 
-
+    // Test de la fonction ToutSegmentPossible
+    std::cout << "***** ************************** *****" << std::endl;
+    std::cout << "***** Test de ToutSegmentPossible *****" << std::endl;
+    std::vector<Segment> segments_possibles = obstacle.ToutSegmentPossible();
+    std::cout << "Nombre de segments possibles: " << segments_possibles.size() << std::endl;
+    for (int i = 0; i < segments_possibles.size(); i++) {
+        std::cout << "Segment " << i << ": " << segments_possibles[i] << std::endl;
+    }
 
     return 0;
 }
