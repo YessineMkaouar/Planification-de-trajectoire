@@ -2,14 +2,9 @@
 #define OBSTACLEH
 
 #include <vector>
-#include <cstdlib>
-#include <cstdio>
-#include <algorithm>
-#include <math.h>
-#include <iostream>
+#include "Vecteur.h"
 #include "Point.h"
 #include "Segment.h"
-#include "vecteur.h"
 #include "Arc.h"
 using namespace std;
 
@@ -22,12 +17,14 @@ private:
     vector<Segment> Tab; // vecteur contenant l'ensemble des aretes (segments) de l'obstacle
 
 public:
-    Obstacle();                            // constructeur de obstacle par defaut
-    Obstacle(vector<Point>);               // constructeur de obstacle à partir d'une liste de points
-    int get_nbs() const;                   // retourne le nombre de sommets de l'obstacle
-    vector<Point> get_som() const;         // retourne la liste des sommets de l'obstacle
-    vector<Segment> aretes();              // liste avec les aretes
-    bool intersect(Arc AB);                // Verifie si un arc coupe l'obtacle en au moins 2 points
-    vector<Segment> ToutSegmentPossible(); // Genere une lise de tous les segment qu'on peut dessiner dans un obstacle
+    Obstacle(); // constructeur de la classe Obstacle
+    Obstacle(const std::vector<Point>&); // constructeur de la classe Obstacle
+    int get_nbs() const; // getter du nombre de sommets
+    std::vector<Point> get_som() const; // getter des sommets
+    std::vector<Segment> aretes() const; // getter des aretes
+    bool intersect(const Arc& AB) const; // test d'intersection entre un arc et l'obstacle
+    std::vector<Segment> ToutSegmentPossible(); // retourne l'ensemble des segments possibles
+    Point point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) const; // retourne le point d'intersection entre deux segments
+    double determinant(const Vecteur& V1, const Vecteur& V2) const ; // retourne le determinant entre deux vecteurs
 };
 #endif

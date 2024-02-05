@@ -15,12 +15,12 @@ private:
 public:
     Point();                                              // constructeur de la classe Point
     Point(double x, double y);                            // constructeur de la classe Point
-    double getx();                                        // getter de l'abcisse
-    double gety();                                        // getter de l'ordonnée
+    double getx() const;                                        // getter de l'abcisse
+    double gety() const;                                        // getter de l'ordonnée
     void setx(double x);                                  // setter de l'abcisse
     void sety(double y);                                  // setter de l'ordonnée
-    double distance(const Point &P);                      // distance entre deux points
-    friend ostream &operator<<(ostream &, const Point &); // affichage d'un point
+    double distance(const Point &P) const;                      // distance entre deux points
+    friend ostream &operator<<(std::ostream &, const Point &); // affichage d'un point
     friend bool operator==(Point, Point);                 // comparaison entre deux points
     friend bool operator!=(Point, Point);
 };

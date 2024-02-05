@@ -20,6 +20,7 @@ public:
     vector<Point> getSommets();     //getter de la liste des getSommets
     void afficher();                //affichage de la graphe
     int getN();                     //getter du nombre de sommet
+    std::vector<int> getNeighbors(int sommet) const;
 };
 
 

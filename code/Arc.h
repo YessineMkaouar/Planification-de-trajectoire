@@ -2,21 +2,20 @@
 #define ARC_H_INCLUDED
 
 #include <iostream>
-#include<fstream>
-#include<sstream>
-#include<cstdlib>
+#include <cmath> // Pour les opérations mathématiques
 #include "Segment.h"
 
-using namespace std;
 class Arc : public Segment
 {
 private:
-    double COUT;        //cout d'un arc (�videmment sa norme 2)
+    double COUT; // cout d'un arc (évidemment sa norme 2)
+
 public:
     Arc();
-    Arc(Point P1,Point P2);
+    Arc(Point P1, Point P2);
     double getCout();
-    void afficher();
+    void afficher()const;
 };
 
 #endif // ARC_H_INCLUDED
+

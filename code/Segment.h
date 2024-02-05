@@ -3,26 +3,23 @@
 
 #include "Point.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cstdlib>
 
-using namespace std;
 class Segment
 {
 protected:
-    Point P1, P2; // P1 et P2 sont les deux points qui définissent le segment
+    Point P1, P2; // P1 et P2 sont les deux points qui d�finissent le segment
 public:
-    Segment();                                // constructeur par defaut
-    Segment(Point P1, Point P2);              // constructeur de la classe Segment
-    Point getP1();                            // getter de P1
-    Point getP2();                            // getter de P2
-    void setP1(Point P1);                     // setter de P1
-    void setP2(Point P2);                     // setter de P2
-    double getLongueur();                     // calcul de la longueur du segment
-    bool intersect(Segment);                  // test d'intersection entre deux segments
-    friend bool operator==(Segment, Segment); // comparaison entre deux segments
-    friend bool operator!=(Segment, Segment);
-    friend ostream &operator<<(ostream &, const Segment &); // affichage d'un segment
+    Segment();                                  // constructeur par defaut
+    Segment(Point P1, Point P2);                // constructeur de la classe Segment
+    const Point &getP1() const;                 // getter de P1
+    const Point &getP2() const;                 // getter de P2
+    void setP1(Point P1);                       // setter de P1
+    void setP2(Point P2);                       // setter de P2
+    double getLongueur() const;                 // calcul de la longueur du segment
+    bool intersect(const Segment &other) const; // test d'intersection entre deux segments
+    friend bool operator==(const Segment &s1, const Segment &s2); // comparaison entre deux segments
+    friend bool operator!=(const Segment &s1, const Segment &s2);
+    friend std::ostream &operator<<(std::ostream &out, const Segment &s); // affichage d'un segment
 };
+
 #endif // SEGMENT_H_INCLUDED
