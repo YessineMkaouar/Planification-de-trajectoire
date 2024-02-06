@@ -32,32 +32,6 @@ vector<Segment> Obstacle::aretes() const // retourne la liste des segments ( are
   return Tab;
 }
 
-Point Obstacle::point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) const // retourne le point d'intersection entre deux segments
-{
-  Point a1(x1, y1);
-  Point a2(x2, y2);
-  Vecteur A(a1, a2);
-
-  Point b1(x3, y3);
-  Point b2(x4, y4);
-  Vecteur B(b1, b2);
-
-  Vecteur temp_vecteur1(a1, b1);
-  Vecteur temp_vecteur2(a1, b2);
-
-  double a = static_cast<double>(A.pd_vect(temp_vecteur1)) / A.norme();
-  double b = static_cast<double>(A.pd_vect(temp_vecteur2)) / A.norme();
-
-  double nouveauB = B.norme() + (B.norme() * b) / (a - b);
-  double resX, resY;
-  double vraiRapport = nouveauB / B.norme();
-
-  resX = b1.getx() + B.getX() * vraiRapport;
-  resY = b1.gety() + B.getY() * vraiRapport;
-  Point P11(resX, resY);
-  return P11;
-}
-
 double Obstacle::determinant(const Vecteur &V1, const Vecteur &V2) const
 {
   return V1.getX() * V2.getY() - V1.getY() * V2.getX();
