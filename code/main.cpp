@@ -5,7 +5,7 @@
 #include "Arc.h"
 #include "Graphe.h"
 #include "obstacle.h"
-#include "Fonction.h"
+#include "fonctions.h"
 #include<bits/stdc++.h>
 #include <sstream>
 using namespace std;
@@ -16,7 +16,7 @@ int main()
 {   cout<<"Bienvenue dans notre projet planification de la trajectoire "<<endl<<endl;
 cout<<"Avant de commencer, il est necessaire d'avoir MATLAB installe sur votre PC."<<endl;
 cout<<"-------------------------------------------------------------------"<<endl;
-cout<<" Si vous voulez entrer vos coordonnees et vos obstacle à la main taper 0 "<<endl;
+cout<<" Si vous voulez entrer vos coordonnees et vos obstacle ï¿½ la main taper 0 "<<endl;
 cout<<" Si vous voulez essayer nos tests proposes taper 1, 2, 3, 4, 5 "<<endl;
 char reponse;
 cin>>reponse;
@@ -25,11 +25,11 @@ cin>>reponse;
 switch(reponse){
     case '0' :
     {
-        cout<<"veuiller saisir les coordonnée du point de depart séparees par un espace"<<endl;
+        cout<<"veuiller saisir les coordonnï¿½e du point de depart sï¿½parees par un espace"<<endl;
         double a,b;
         cin>>a>>b;
         Point O(a,b);
-        cout<<endl<<"veuiller saisir les coordonnees du point d'arrivee séparees par un espace"<<endl;
+        cout<<endl<<"veuiller saisir les coordonnees du point d'arrivee sï¿½parees par un espace"<<endl;
         cin>>a>>b;
         Point S(a,b);
 
@@ -51,7 +51,7 @@ switch(reponse){
             cout<<endl;
              for(int j=0;j<nbresom;j++)
              {
-                cout<<"veuiller saisir les coordonnée du point"<<j<<" de l'obstacle "<<i<<" séparees par un espace"<<endl;
+                cout<<"veuiller saisir les coordonnï¿½e du point"<<j<<" de l'obstacle "<<i<<" sï¿½parees par un espace"<<endl;
                 double a,b;
                 cin>>a>>b;
                 O.setx(a);
@@ -492,7 +492,7 @@ Graphe G(V1);           //la graphe contenant tous les points
 
 double MatCout[G.getN()][G.getN()]; // Matrice des couts
 
-//////////////////////////////////////////////////// Ce morceau de code modifie la matrice du cout avec les poids demandé dans l'énoncé
+//////////////////////////////////////////////////// Ce morceau de code modifie la matrice du cout avec les poids demandï¿½ dans l'ï¿½noncï¿½
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
 
@@ -576,7 +576,7 @@ vector<pair<int,int> > PlusCourtChemin=resultat;
 ////////////////////////////////// DESSIN DU PLUS COURT CHEMIN //////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////// Fonction qui retourne un fichier txt contenant le code matlab pour le dessin
-ofstream flux;
+/* ofstream flux;
 flux.open("Matlab/codeMatlab.m");
 if (flux)
     {
@@ -666,7 +666,7 @@ else
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////  AFFICHAGE FINAL
-cout<<"---------Votre trajectoire est totalement planifie et on vous a trouvé le plus court chemin !! ------------"<<endl<<endl<<endl<<endl<<endl<<endl;
+cout<<"---------Votre trajectoire est totalement planifie et on vous a trouvï¿½ le plus court chemin !! ------------"<<endl<<endl<<endl<<endl<<endl<<endl;
 
 // affichage des matrice de cout
 
@@ -688,7 +688,7 @@ if (reponse1=='Y'){
 
 
 cout<<endl<<endl<<endl<<"-------------------------------------------------------------------"<<endl;
-cout<<"Voulez vous afficher les coordonnées des points du plus court chemin ? (Y/N)"<<endl;
+cout<<"Voulez vous afficher les coordonnï¿½es des points du plus court chemin ? (Y/N)"<<endl;
 char reponse2;
 cin>>reponse2;
 if (reponse2=='Y'){
@@ -698,9 +698,9 @@ for(int i=0;i<PlusCourtChemin.size();i++)
 }
 }
 system("Matlab/codeMatlab.m");
-cout<<endl<<"*  *  *  *  *  *  *  *  *  *  *  *  *  *  *"<<endl<<"Merci d'avoir untilisé notre programme :)"<<endl;
+cout<<endl<<"*  *  *  *  *  *  *  *  *  *  *  *  *  *  *"<<endl<<"Merci d'avoir untilisï¿½ notre programme :)"<<endl;
 bool closing;
 cin>>closing;
-exit(1);
+exit(1); */
     return 0;
 }

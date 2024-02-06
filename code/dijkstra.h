@@ -7,9 +7,8 @@
 #include "obstacle.h"
 #include "Graphe.h"
 #include "Point.h"
-#include "Fonction.h"
+#include "fonctions.h"
 #define INFINI = 9999
-
 
 
 //Cette fonction a pour utilité de trouver le sommet avec la valeur de distance minimale, à partir de
