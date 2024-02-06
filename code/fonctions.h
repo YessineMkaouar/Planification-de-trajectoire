@@ -13,9 +13,9 @@
 #include "Graphe.h"
 
 bool testin(Segment S1, Point s);
-double vectcos(Segment s1, Segment s2);
+double vectcos(Segment s1, Segment s2); 
 Segment inverse(Segment S);
-Point determinIntersect(Segment S1, Segment S2);
+Point determinIntersect(Segment S1, Segment S2); // retourne le point d'intersection entre deux segments
 bool upgradedintersection(Segment S1, Segment S2);
 
 bool traverse_Cas_Convexe(Obstacle Obs, Segment S);

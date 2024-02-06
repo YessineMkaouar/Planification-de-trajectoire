@@ -13,10 +13,10 @@ using namespace std;
 const double INFINIE = 9999;
 bool testin(Segment S1, Point s)
 {
-    double EPSILON = 0.01;
-    Vecteur V1(S1.getP1(), S1.getP2());
+    double EPSILON = 0.01; // 0.01
+    Vecteur V1(S1.getP1(), S1.getP2()); // Vecteur qui represente le segment
     Vecteur V2(S1.getP1(), s);
-    Vecteur V3(S1.getP2(), s);
+    Vecteur V3(S1.getP2(), s); // Vecteur qui represente le segment
     double xa = S1.getP1().getx();
     double ya = S1.getP1().gety();
     double xb = S1.getP2().getx();
