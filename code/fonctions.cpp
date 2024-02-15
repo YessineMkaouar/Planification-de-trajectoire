@@ -13,10 +13,10 @@ using namespace std;
 const double INFINIE = 9999;
 bool testin(Segment S1, Point s)
 {
-    double EPSILON = 0.01; // 0.01
-    Vecteur V1(S1.getP1(), S1.getP2()); // Vecteur qui represente le segment
+    double EPSILON = 0.01;
+    Vecteur V1(S1.getP1(), S1.getP2());
     Vecteur V2(S1.getP1(), s);
-    Vecteur V3(S1.getP2(), s); // Vecteur qui represente le segment
+    Vecteur V3(S1.getP2(), s);
     double xa = S1.getP1().getx();
     double ya = S1.getP1().gety();
     double xb = S1.getP2().getx();
@@ -242,4 +242,62 @@ void dessinerObstacles(vector<Obstacle> O, ofstream &fluxx)
         fluxx << "h" << i << "=fill(x_obs" << i << ",y_obs" << i << ",'y-');" << endl;
         fluxx << "h" << i << "FaceColor = [0 0.25 0.25];" << endl;
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////// La fonction Dijkstra qui utulise l'algorithme de Dijkstra :
+
+vector<Point> Dijkstra(Graphe &G, Point &P, Point &Q, Obstacle &obs)
+{
+    int n = G.getN();
+    map<Point, Point> S = {{P, P}}; // les noeuds parcourus
+    map<Point, Point> T; // les noeuds restants
+    // les etiquettes :
+    map<Point, long double> l; // les distances par rapport à start
+    map<Point, Point> p; // l'ensemble des 'noeud precedent'
+
+    for (int i = 0; i < n; i++)
+        T[G.getSommets()[i]] = G.getSommets()[i];
+
+    l[P] = 0.0;
+
+    // recherche du plus court chemin (de 'start' vers tous les noeuds) :
+    while (!T.empty()) {
+        // trouver 'i' le noeud de T avec la plus petite distance
+        Point i = T.begin()->first;
+        for (auto it = T.begin(); it != T.end(); it++) {
+            if (l[it->first] < l[i])
+                i = it->first;
+        }
+
+        // déplacer le sommet i de T a S :
+        S[i] = T[i];
+        T.erase(i);
+
+        // trouver les voisins (dans 'T') de S[i], le noeud actif
+        map<Point, Point> J; // l'ensemble des voisins
+        for (auto x : T) {
+            Segment potential_arc(i, x.first);
+            if (!traverse(obs,potential_arc) && relier(obs, potential_arc))
+                J[x.first] = x.first;
+        }
+
+        // étiqueter les voisins de S[i] par 'S[i], l[i]+distance_i' si c'est mieux
+        for (auto &itr : J) {
+            long double new_dist = l[i] + Arc(i, itr.first).getCout();
+            if (l.find(itr.first) == l.end() || new_dist < l[itr.first]) {
+                p[itr.first] = i;
+                l[itr.first] = new_dist;
+            }
+        }
+    }
+
+    // output du plus court chemin (start -> end) :
+    vector<Point> res = {Q}; // initialisation du plus court chemin
+
+    Point _point = Q;
+    while (!(_point == P)) {
+        res.insert(res.begin(), p[_point]);
+        _point = p[_point];
+    }
+    return res;
 }
