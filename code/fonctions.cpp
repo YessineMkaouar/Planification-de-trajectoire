@@ -286,7 +286,7 @@ pair<double, vector<Point>> dijkstra(Graphe& graph, Point source, Point destinat
         if (pairs[z].first!=Q){Neighbors.push_back(pairs[z].first);}
         }
         for (const auto& P : Neighbors) {
-            cout<<P<<endl;
+            cout<<P<<endl; 
             Arc M=Arc(P,Q);
             int v ;
             for(int z =0;z<V;z++){

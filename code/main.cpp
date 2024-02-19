@@ -1,3 +1,4 @@
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -183,5 +184,11 @@ int main()
     pair<double, vector<Point>> pairs = dijkstra(monGraphe, A, I,obs);
     cout<<"la distance minimale est "<<pairs.first<<endl;
     vector<Point> path=pairs.second;
+
+    ///////////////////// Test de l'interface graphique
+
+    std::cout << "***** ************************* *****" << std::endl;
+    std::cout << "***** Test de l'interface graphique' *****" << std::endl;
+
 
 }
