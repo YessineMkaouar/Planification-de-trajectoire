@@ -34,7 +34,7 @@ bool testin(Segment S1, Point s)
     return (test || s == S1.getP1()) || s == S1.getP2();
 }
 
-///////////////////////////////////////////////////////////////////////// Fonction qui retourne l'angle entre deux segments
+/////////////////////////////////////////// Fonction qui retourne l'angle entre deux segments
 double vectcos(Segment s1, Segment s2)
 {
     Vecteur V1(s1.getP1(), s1.getP2());
@@ -42,14 +42,14 @@ double vectcos(Segment s1, Segment s2)
     return cos(V1.angle(V2));
 }
 
-/////////////////////////////////////////////////////////// Fonction qui retourne L'inverse d'un segment
+///////////////////////////////////////////// Fonction qui retourne L'inverse d'un segment
 Segment inverse(Segment S)
 {
     Segment aux(S.getP2(), S.getP1());
     return aux;
 }
 
-///////////////////////////////////////////////////////// Fonction qui determine le point d'intersection entre deux segments
+////////////////////////////////// Fonction qui determine le point d'intersection entre deux segments
 Point determinIntersect(Segment S1, Segment S2)
 {
     const double EPSILON = 0.01;
@@ -107,13 +107,13 @@ Point determinIntersect(Segment S1, Segment S2)
     return P;
 }
 
-/////////////////////////////////////////////////////////// Fonction qui teste si deux segment s'intersectent
+///////////////////////////////////////// Fonction qui teste si deux segment s'intersectent
 bool upgradedintersection(Segment S1, Segment S2)
 {
     Point s = determinIntersect(S1, S2);
     return (testin(S1, s)) && (testin(S2, s));
 }
-//////////////////////////////////////////////////////////// Fonction qui retourne si un segment est dans une liste de segments donn�es
+////////////////////////////////////// Fonction qui retourne si un segment est dans une liste de segments donn�es
 bool seginlist(Segment S, std::vector<Segment> L)
 {
     for (int i = 0; i < L.size(); i++)
@@ -122,8 +122,7 @@ bool seginlist(Segment S, std::vector<Segment> L)
             return true;
     }
     return false;
-}
-//////////////////////////////////////////////////////////// Fonction qui retourne si un sommet est dans une listes de sommets données
+}///////////////////////////////////// Fonction qui retourne si un sommet est dans une listes de sommets données
 bool sinlistsom(Point s, std::vector<Point> L)
 {
     for (int i = 0; i < L.size(); i++)
@@ -133,7 +132,7 @@ bool sinlistsom(Point s, std::vector<Point> L)
     }
     return false;
 }
-/////////////////////////////////////////////////////////// Fonction qui verifie si un segment traverse un obstacle Dans le cas convexe (Parfois non convexe)
+/////////////////////////////////////// Fonction qui verifie si un segment traverse un obstacle Dans le cas convexe (Parfois non convexe)
 bool traverse_Cas_Convexe(Obstacle Obs, Segment S)
 {
     int res = 0;
@@ -150,7 +149,7 @@ bool traverse_Cas_Convexe(Obstacle Obs, Segment S)
     return (V.size() >= 2);
 }
 
-/////////////////////////////////////////////////////   Fonction qui verifie si un segment traverse un obstacle Dans le cas non convexe
+//////////////////////////////////   Fonction qui verifie si un segment traverse un obstacle Dans le cas non convexe
 bool traverse_optimisant_cas_non_Convexe(Obstacle Obs, Segment S)
 {
     for (int i = 0; i < Obs.aretes().size(); i++)
@@ -166,12 +165,12 @@ bool traverse_optimisant_cas_non_Convexe(Obstacle Obs, Segment S)
     return false;
 }
 
-///////////////////////////////////////////////////// Fonction qui verifie si un segment traverse un obstacle
+////////////////////////////////////////// Fonction qui verifie si un segment traverse un obstacle
 bool traverse(Obstacle Obs, Segment S)
 {
     return traverse_optimisant_cas_non_Convexe(Obs, S) || traverse_Cas_Convexe(Obs, S);
 }
-//////////////////////////////////////////////////////////// Fonction qui verifie si un segment dans un obstacle peut �tre relier ou pas
+/////////////////////////////////////////// Fonction qui verifie si un segment dans un obstacle peut �tre relier ou pas
 bool relier(Obstacle ob, Segment S)
 {
     bool test1 = sinlistsom(S.getP1(), ob.get_som());
@@ -194,7 +193,7 @@ bool relier(Obstacle ob, Segment S)
     return true;
 }
 
-////////////////////////////////////////////////////////////// Cette fonction retourne un fichier txt qui contient les coordonn�es des points du graphe
+//////////////////////////// Cette fonction retourne un fichier txt qui contient les coordonn�es des points du graphe
 void dessinerGraphe(Graphe G, ofstream &flux)
 {
 
@@ -213,7 +212,7 @@ void dessinerGraphe(Graphe G, ofstream &flux)
     flux << G.getSommets()[i].gety() << "];" << endl;
     flux << "plot(x,y,'.k','MarkerSize', 30)" << endl;
 }
-/////////////////////////////////////////////////////////////////// Cette fonction retourneun fichier txt qui contient les coordonn� des points d'un obstacle
+/////////////////// Cette fonction retourneun fichier txt qui contient les coordonnées des points d'un obstacle
 
 void dessinerObstacles(vector<Obstacle> O, ofstream &fluxx)
 {
@@ -244,7 +243,7 @@ void dessinerObstacles(vector<Obstacle> O, ofstream &fluxx)
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////// La fonction Dijkstra qui utulise l'algorithme de Dijkstra :
+/////////////////////////////////////////// La fonction Dijkstra qui utulise l'algorithme de Dijkstra :
 
 pair<double, vector<Point>> dijkstra(Graphe& graph, Point source, Point destination,Obstacle& obs) {
     vector<Point> sommets=graph.getSommets();
