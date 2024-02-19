@@ -246,58 +246,80 @@ void dessinerObstacles(vector<Obstacle> O, ofstream &fluxx)
 
 /////////////////////////////////////////////////////////////////////////////////////////////// La fonction Dijkstra qui utulise l'algorithme de Dijkstra :
 
-vector<Point> Dijkstra(Graphe &G, Point &P, Point &Q, Obstacle &obs)
-{
-    int n = G.getN();
-    map<Point, Point> S = {{P, P}}; // les noeuds parcourus
-    map<Point, Point> T; // les noeuds restants
-    // les etiquettes :
-    map<Point, long double> l; // les distances par rapport à start
-    map<Point, Point> p; // l'ensemble des 'noeud precedent'
+pair<double, vector<Point>> dijkstra(Graphe& graph, Point source, Point destination,Obstacle& obs) {
+    vector<Point> sommets=graph.getSommets();
+    int V = sommets.size();
+    vector<pair<Point, int>> pairs;
+    for (int i = 0; i < sommets.size(); ++i) {
+        pairs.push_back(make_pair(sommets[i], i));
+    }
+    vector<int> pred(V, -1); // Tableau pour stocker les prédécesseurs de chaque sommet
+    vector<double> dist(V, 9999.); // Tableau pour stocker les distances les plus courtes
+    vector<bool> visited(V, false); // Tableau pour marquer les sommets visités
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // Min-heap pour choisir le sommet suivant
+    int i=0;
+    for(int z =0;z<V;z++){
+        if (pairs[z].first==source){dist[pairs[z].second] = 0;
+        i=z;}
+    }
 
-    for (int i = 0; i < n; i++)
-        T[G.getSommets()[i]] = G.getSommets()[i];
+    pq.push({0, i});
+    int etape=0;
+    int d;
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
 
-    l[P] = 0.0;
-
-    // recherche du plus court chemin (de 'start' vers tous les noeuds) :
-    while (!T.empty()) {
-        // trouver 'i' le noeud de T avec la plus petite distance
-        Point i = T.begin()->first;
-        for (auto it = T.begin(); it != T.end(); it++) {
-            if (l[it->first] < l[i])
-                i = it->first;
+        if (visited[u]) continue;
+        visited[u] = true;
+        int g;
+        for(int z =0;z<V;z++){
+        if (pairs[z].first==destination){g=z;}
         }
+        // Si le nœud actuel est le nœud de destination, retourne sa distance minimale depuis la source
+        if (u ==g )  {d=u ;break;}
+        cout<<"step"<<etape<<":"<<endl;
+        Point Q=pairs[u].first;
+        cout<<"le point actuel est "<<Q<<endl;
 
-        // déplacer le sommet i de T a S :
-        S[i] = T[i];
-        T.erase(i);
-
-        // trouver les voisins (dans 'T') de S[i], le noeud actif
-        map<Point, Point> J; // l'ensemble des voisins
-        for (auto x : T) {
-            Segment potential_arc(i, x.first);
-            if (!traverse(obs,potential_arc) && relier(obs, potential_arc))
-                J[x.first] = x.first;
+        vector<Point> Neighbors;
+        for(int z =0;z<V;z++){
+        if (pairs[z].first!=Q){Neighbors.push_back(pairs[z].first);}
         }
-
-        // étiqueter les voisins de S[i] par 'S[i], l[i]+distance_i' si c'est mieux
-        for (auto &itr : J) {
-            long double new_dist = l[i] + Arc(i, itr.first).getCout();
-            if (l.find(itr.first) == l.end() || new_dist < l[itr.first]) {
-                p[itr.first] = i;
-                l[itr.first] = new_dist;
+        for (const auto& P : Neighbors) {
+            cout<<P<<endl;
+            Arc M=Arc(P,Q);
+            int v ;
+            for(int z =0;z<V;z++){
+            if (pairs[z].first==P){v=z;}
             }
+            double  weight=M.getLongueur();
+            if (traverse(obs,M)==true){weight=9999;}
+            if (seginlist(M,obs.aretes())||seginlist(inverse(M),obs.aretes())){weight=M.getLongueur();}
+            if (relier(obs,M)){weight=M.getLongueur();}
+            if (dist[u] < 10000 && dist[u] + weight < dist[v]) {
+                dist[v] = dist[u] + weight;
+                pred[v] = u;
+                pq.push({dist[v], v});
+            }
+
         }
-    }
 
-    // output du plus court chemin (start -> end) :
-    vector<Point> res = {Q}; // initialisation du plus court chemin
-
-    Point _point = Q;
-    while (!(_point == P)) {
-        res.insert(res.begin(), p[_point]);
-        _point = p[_point];
+    etape++;}
+    vector<Point> cheminOptimal;
+    int g = pred[d];
+    cheminOptimal.push_back(destination);
+    while (g != -1) {
+        cheminOptimal.push_back(pairs[g].first);
+        g = pred[g];
     }
-    return res;
+    reverse(cheminOptimal.begin(), cheminOptimal.end());
+    cout << "Chemin optimal :" << endl;
+    for (const auto& point : cheminOptimal) {
+    cout << point << "   ";
+    }
+    cout << endl;
+
+    // Si le nœud de destination n'a pas été atteint, retourne une distance infinie
+    return make_pair(dist[d], cheminOptimal);
 }

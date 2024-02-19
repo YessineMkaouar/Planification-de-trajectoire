@@ -4,7 +4,7 @@
 
 Arc::Arc() : COUT(0)
 {
-    // Les membres P1 et P2 sont d�j� initialis�s avec leur constructeur par d�faut
+    // Les membres P1 et P2 sont déja initialisés avec leur constructeur par défaut
 }
 
 Arc::Arc(Point A, Point B) : COUT(sqrt((A.getx() - B.getx()) * (A.getx() - B.getx()) + (A.gety() - B.gety()) * (A.gety() - B.gety())))

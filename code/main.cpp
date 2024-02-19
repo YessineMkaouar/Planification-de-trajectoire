@@ -124,7 +124,7 @@ int main()
     int nombreDeSommets = monGraphe.getN();
     cout << "Nombre de sommets dans le graphe : " << nombreDeSommets << endl;
     //tester les fonctions
-    // Cr�ez des objets Segment et Obstacle pour les tests
+    // Créez des objets Segment et Obstacle pour les tests
     Point p11(0, 0);
     Point p21(1, 0);
     Point p31(2, 0);
@@ -177,7 +177,7 @@ int main()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
 
-    vector<Point> res = Dijkstra(monGraphe,A,F,obs);
+    // vector<Point> res = Dijkstra(monGraphe,A,F,obs);
 
     return 0;
 }
