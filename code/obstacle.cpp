@@ -4,9 +4,9 @@
 #include <vector>
 #include "Vecteur.h"
 
-Obstacle::Obstacle() : nbs(0), som(std::vector<Point>()), Tab(std::vector<Segment>()) {} // constructeur par défaut
+Obstacle::Obstacle() : nbs(0), som(std::vector<Point>()), Tab(std::vector<Segment>()) {} // constructeur par d�faut
 
-Obstacle::Obstacle(const std::vector<Point> &T) : som(T), nbs(T.size()), Tab(std::vector<Segment>()) // constructeur à partir d'une liste de points
+Obstacle::Obstacle(const std::vector<Point> &T) : som(T), nbs(T.size()), Tab(std::vector<Segment>()) // constructeur � partir d'une liste de points
 {
   for (int i = 0; i < nbs; i++) // on parcourt les sommets de l'obstacle
   {
@@ -30,6 +30,32 @@ vector<Point> Obstacle::get_som() const { return som; } // retourne la liste des
 vector<Segment> Obstacle::aretes() const // retourne la liste des segments ( aretes ) de l'obstacle
 {
   return Tab;
+}
+
+Point Obstacle::point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) const // retourne le point d'intersection entre deux segments
+{
+  Point a1(x1, y1);
+  Point a2(x2, y2);
+  Vecteur A(a1, a2);
+
+  Point b1(x3, y3);
+  Point b2(x4, y4);
+  Vecteur B(b1, b2);
+
+  Vecteur temp_vecteur1(a1, b1);
+  Vecteur temp_vecteur2(a1, b2);
+
+  double a = static_cast<double>(A.pd_vect(temp_vecteur1)) / A.norme();
+  double b = static_cast<double>(A.pd_vect(temp_vecteur2)) / A.norme();
+
+  double nouveauB = B.norme() + (B.norme() * b) / (a - b);
+  double resX, resY;
+  double vraiRapport = nouveauB / B.norme();
+
+  resX = b1.getx() + B.getX() * vraiRapport;
+  resY = b1.gety() + B.getY() * vraiRapport;
+  Point P11(resX, resY);
+  return P11;
 }
 
 double Obstacle::determinant(const Vecteur &V1, const Vecteur &V2) const
@@ -77,10 +103,12 @@ std::vector<Segment> Obstacle::ToutSegmentPossible() // Genere une liste de tous
     {
         for (int j = i + 1; j < nbs; j++)
         {
-            Segment S(som[i], som[j]); // Création d'un segment entre les points i et j
+            Segment S(som[i], som[j]); // Cr�ation d'un segment entre les points i et j
             V.push_back(S); // Ajout du segment au vecteur
         }
     }
 
     return V; // Retourne la liste des segments possibles dans l'obstacle
 }
+
+

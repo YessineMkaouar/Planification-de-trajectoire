@@ -5,7 +5,7 @@ Segment::Segment() : P1(), P2() // constructeur par defaut
 {
 }
 
-Segment::Segment(Point A, Point B) : P1(A), P2(B) // constructeur de la classe Segment à partir de deux points A et B
+Segment::Segment(Point A, Point B) : P1(A), P2(B) // constructeur de la classe Segment � partir de deux points A et B
 {
 }
 
@@ -22,7 +22,7 @@ void Segment::setP2(Point B) // setter du point P2
 const Point &Segment::getP1() const // getter de P1
 {
     return P1;
-} 
+}
 const Point &Segment::getP2() const // getter de P2
 {
     return P2;
@@ -65,3 +65,5 @@ ostream &operator<<(std::ostream &out, const Segment &S) // affichage d'un segme
     out << "Segment de points " << S.P1 << " et " << S.P2;
     return out;
 }
+
+

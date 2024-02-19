@@ -23,3 +23,5 @@ public:
 };
 
 #endif // SEGMENT_H_INCLUDED
+
+

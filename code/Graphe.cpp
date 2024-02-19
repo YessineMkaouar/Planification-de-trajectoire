@@ -43,12 +43,14 @@ int Graphe::getN() {
         Ens.insert(Pair2);
     }
     return Ens.size();}
-std::vector<int> Graphe::getNeighbors(int sommet) const {
-    vector<int> neighbors;
+std::vector<Point> Graphe::getNeighbors(Point sommet) const {
+    std::vector<Point> neighbors;
     for (const Arc &arc : listeArc) {
-        if (arc.getP1().getx() == sommet) neighbors.push_back(arc.getP2().getx());
-        else if (arc.getP2().getx() == sommet) neighbors.push_back(arc.getP1().getx());
+        if (arc.getP1().getx() == sommet.getx()||arc.getP1().gety() == sommet.gety()) neighbors.push_back(arc.getP2());
+        else if (arc.getP2().getx() == sommet.getx()||arc.getP2().gety() == sommet.gety()) neighbors.push_back(arc.getP1());
     }
+    neighbors.erase(neighbors.begin());
     return neighbors;
-
 }
+
+

@@ -28,3 +28,4 @@ public:
     double determinant(const Vecteur& V1, const Vecteur& V2) const ; // retourne le determinant entre deux vecteurs
 };
 #endif
+

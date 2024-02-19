@@ -22,7 +22,9 @@ bool traverse_Cas_Convexe(Obstacle Obs, Segment S);
 bool traverse_optimisant_cas_non_Convexe(Obstacle Obs, Segment S);
 bool traverse(Obstacle Obs, Segment S);
 bool relier(Obstacle ob, Segment S);
-vector<Point> Dijkstra(Graphe &G, Point &P, Point &Q, Obstacle &obs);
+pair<double, vector<Point>> dijkstra(Graphe& graph, Point source, Point destination,Obstacle& obs) ;
+void afficherChemin(const vector<Point> &chemin);
+double distanceWithObstacles(const Point& p1, const Point& p2, const vector<Obstacle>& obstacles) ;
 
 
 #endif // FONCTIONS_H_INCLUDED

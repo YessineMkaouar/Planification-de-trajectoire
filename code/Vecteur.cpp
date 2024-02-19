@@ -4,17 +4,17 @@
 #include <math.h>
 #define M_PI 3.14159265358979323846 /* pi */
 
-Vecteur::Vecteur() : X(0), Y(0) // constructeur d'un vecteur par défaut (vecteur nul)
+Vecteur::Vecteur() : X(0), Y(0) // constructeur d'un vecteur par d�faut (vecteur nul)
 {
 }
-Vecteur::Vecteur(Point A, Point B) : X(A.getx() - B.getx()), Y(A.gety() - B.gety()) // constructeur d'un vecteur à partir de deux points
+Vecteur::Vecteur(Point A, Point B) : X(A.getx() - B.getx()), Y(A.gety() - B.gety()) // constructeur d'un vecteur � partir de deux points
 {
     P1.setx(A.getx());
     P1.sety(A.gety());
     P2.setx(B.getx());
     P2.sety(B.gety());
 }
-Vecteur::Vecteur(double XX, double YY) : X(XX), Y(YY) // constructeur d'un vecteur à partir de deux coordonnées
+Vecteur::Vecteur(double XX, double YY) : X(XX), Y(YY) // constructeur d'un vecteur � partir de deux coordonn�es
 {
     P1.setx(XX);
     P1.sety(0);
@@ -51,7 +51,7 @@ bool Vecteur::estAigu(const Vecteur &V) const // Retourne 1 si l'angle est Aigu,
     return (abs(angle) <= M_PI / 2);
 }
 
-bool Vecteur::estPerpendiculaire(const Vecteur &V) const // Retourne 1 si le vecteur est perpendiculaire à un autre vecteur V
+bool Vecteur::estPerpendiculaire(const Vecteur &V) const // Retourne 1 si le vecteur est perpendiculaire � un autre vecteur V
 {
     return (X * V.X + Y * V.Y == 0);
 }
@@ -60,3 +60,4 @@ double Vecteur::pd_vect(const Vecteur &V) const // Retourne le produit vectoriel
 {
     return (X * V.Y - Y * V.X);
 }
+

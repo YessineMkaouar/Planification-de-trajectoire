@@ -1,4 +1,7 @@
 #include <iostream>
+#include <vector>
+#include <queue>
+#include <limits>
 #include "Point.h"
 #include "Segment.h"
 #include "Vecteur.h"
@@ -6,6 +9,7 @@
 #include "Arc.h"
 #include "Graphe.h"
 #include "fonctions.h"
+const double INFINIE = std::numeric_limits<double>::max();
 
 int main()
 {
@@ -90,14 +94,17 @@ int main()
     std::cout << "***** Test de la classe Graphe *****" << std::endl;
     // Création de quelques points pour tester
     Point A(0, 0);
-    Point B(1, 1);
-    Point C(2, 0);
-    Point D(3,6);
-    Point E(3,5);
-    Point F(0,4);
+    Point B(1, 0);
+    Point C(1, 2);
+    Point D(3,0);
+    Point E(3,2);
+    Point F(5,1);
+    Point G(4,4);
+    Point H(7,0);
+    Point I(5,3);
 
     // Création d'un vecteur de points
-    std::vector<Point> points = {A, B, C, D, E, F};
+    std::vector<Point> points = {A, B, C, D, E, F,G,H,I};
 
     // Création d'un graphe avec ces points
     Graphe monGraphe(points);
@@ -124,7 +131,7 @@ int main()
     int nombreDeSommets = monGraphe.getN();
     cout << "Nombre de sommets dans le graphe : " << nombreDeSommets << endl;
     //tester les fonctions
-    // Créez des objets Segment et Obstacle pour les tests
+    // Cr�ez des objets Segment et Obstacle pour les tests
     Point p11(0, 0);
     Point p21(1, 0);
     Point p31(2, 0);
@@ -170,14 +177,11 @@ int main()
     std::cout << "Resultat : " << (relierResult ? "true" : "false") << std::endl;
 
     std::vector<std::vector<double>> MatCout(monGraphe.getN(), std::vector<double>(monGraphe.getN(), 0)); // Matrice des couts
-    std::vector<Point> obstaclePoints1 = {B, C, D, E};
+
+    std::vector<Point> obstaclePoints1 = {B, C, D, E,F,G,H};
     Obstacle obs(obstaclePoints1);
+    pair<double, vector<Point>> pairs = dijkstra(monGraphe, A, I,obs);
+    cout<<"la distance minimale est "<<pairs.first<<endl;
+    vector<Point> path=pairs.second;
 
-//////////////////////////////////////////////////// Ce morceau de code modifie la matrice du cout avec les poids demande dans l'enonce
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// //// ////
-
-    // vector<Point> res = Dijkstra(monGraphe,A,F,obs);
-
-    return 0;
 }
