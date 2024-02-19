@@ -277,16 +277,16 @@ pair<double, vector<Point>> dijkstra(Graphe& graph, Point source, Point destinat
         }
         // Si le nœud actuel est le nœud de destination, retourne sa distance minimale depuis la source
         if (u ==g )  {d=u ;break;}
-        cout<<"step"<<etape<<":"<<endl;
+        // cout<<"step"<<etape<<":"<<endl;
         Point Q=pairs[u].first;
-        cout<<"le point actuel est "<<Q<<endl;
+        // cout<<"le point actuel est "<<Q<<endl;
 
         vector<Point> Neighbors;
         for(int z =0;z<V;z++){
         if (pairs[z].first!=Q){Neighbors.push_back(pairs[z].first);}
         }
         for (const auto& P : Neighbors) {
-            cout<<P<<endl; 
+            // cout<<P<<endl; // Pour afficher les voisins
             Arc M=Arc(P,Q);
             int v ;
             for(int z =0;z<V;z++){
@@ -313,9 +313,9 @@ pair<double, vector<Point>> dijkstra(Graphe& graph, Point source, Point destinat
         g = pred[g];
     }
     reverse(cheminOptimal.begin(), cheminOptimal.end());
-    cout << "Chemin optimal :" << endl;
+    // cout << "Chemin optimal :" << endl;
     for (const auto& point : cheminOptimal) {
-    cout << point << "   ";
+    cout << point << " ";
     }
     cout << endl;
 

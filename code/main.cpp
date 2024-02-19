@@ -1,4 +1,3 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -14,7 +13,7 @@ const double INFINIE = std::numeric_limits<double>::max();
 
 int main()
 {
-    // Test de la classe Point
+/*     // Test de la classe Point
     std::cout << "***** Test de la classe Point *****" << std::endl;
     Point p1(1.0, 1.0);
     Point p2(3.0, 4.0);
@@ -89,10 +88,10 @@ int main()
     for (int i = 0; i < segments_possibles.size(); i++)
     {
         std::cout << "Segment " << i << ": " << segments_possibles[i] << std::endl;
-    }
+    } */
     // Test de la classe Graphe
-    std::cout << "***** ************************** *****" << std::endl;
-    std::cout << "***** Test de la classe Graphe *****" << std::endl;
+   /*  std::cout << "***** ************************** *****" << std::endl;
+    std::cout << "***** Test de la classe Graphe *****" << std::endl; */
     // Création de quelques points pour tester
     Point A(0, 0);
     Point B(1, 0);
@@ -110,7 +109,7 @@ int main()
     // Création d'un graphe avec ces points
     Graphe monGraphe(points);
 
-    // Affichage du graphe
+/*    // Affichage du graphe
     monGraphe.afficher();
 
     // Obtention de la liste des arcs du graphe
@@ -176,19 +175,17 @@ int main()
     std::cout << "\nTest de la fonction relier :" << std::endl;
     bool relierResult = relier(obstacle1, segment11);
     std::cout << "Resultat : " << (relierResult ? "true" : "false") << std::endl;
-
+ */
     std::vector<std::vector<double>> MatCout(monGraphe.getN(), std::vector<double>(monGraphe.getN(), 0)); // Matrice des couts
 
     std::vector<Point> obstaclePoints1 = {B, C, D, E,F,G,H};
     Obstacle obs(obstaclePoints1);
     pair<double, vector<Point>> pairs = dijkstra(monGraphe, A, I,obs);
-    cout<<"la distance minimale est "<<pairs.first<<endl;
+    cout<<pairs.first<<endl; // affiche la distance min du chemin
     vector<Point> path=pairs.second;
 
-    ///////////////////// Test de l'interface graphique
 
-    std::cout << "***** ************************* *****" << std::endl;
-    std::cout << "***** Test de l'interface graphique' *****" << std::endl;
-
+    
+    return 0;
 
 }
