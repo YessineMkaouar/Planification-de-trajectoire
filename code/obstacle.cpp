@@ -111,4 +111,14 @@ std::vector<Segment> Obstacle::ToutSegmentPossible() // Genere une liste de tous
     return V; // Retourne la liste des segments possibles dans l'obstacle
 }
 
+ostream &operator<<(std::ostream &os, const Obstacle &O) // Affichage d'un obstacle
+{
+    // os << "Obstacle avec " << O.nbs << " sommets: ";
+    for (int i = 0; i < O.nbs; i++)
+    {
+        os << O.som[i] << " ";
+    }
+    os << "Fin" << std::endl;
+    return os;
+}
 

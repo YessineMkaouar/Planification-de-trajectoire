@@ -180,12 +180,11 @@ int main()
 
     std::vector<Point> obstaclePoints1 = {B, C, D, E,F,G,H};
     Obstacle obs(obstaclePoints1);
+    std::cout << obs << std::endl;
     pair<double, vector<Point>> pairs = dijkstra(monGraphe, A, I,obs);
     cout<<pairs.first<<endl; // affiche la distance min du chemin
     vector<Point> path=pairs.second;
 
-
-    
     return 0;
 
 }

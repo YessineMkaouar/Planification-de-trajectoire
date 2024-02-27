@@ -26,6 +26,7 @@ public:
     std::vector<Segment> ToutSegmentPossible(); // retourne l'ensemble des segments possibles
     Point point_intersec(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) const; // retourne le point d'intersection entre deux segments
     double determinant(const Vecteur& V1, const Vecteur& V2) const ; // retourne le determinant entre deux vecteurs
+    friend ostream& operator<<(std::ostream&, const Obstacle&); // affichage d'un obstacle
 };
 #endif
 
